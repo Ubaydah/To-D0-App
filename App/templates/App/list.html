@@ -1,0 +1,39 @@
+{% extends 'App/main.html' %}
+{% load static %}
+{% block content %}
+
+<div class="center-col">
+	<p class="btn btn-sm btn-warning ">Create a New Task</p>
+	<form action="/" method="POST">
+		{% csrf_token %}
+		{{form.name}}
+		
+		<br>
+		<input class= 'btn btn-sm btn-info' type="submit" name="Create New Task">
+	</form>
+	
+	{% for task in tasks %}
+		<div class="item">
+		{% if task.complete == True %}
+			<strike>{{task}}</strike>
+		{% else %}
+			<span>{{task}}</span>
+
+		{% endif %}
+		<br>
+		<a class= "btn btn-sm btn-info" href="{% url 'update_task' task.id %}">Update</a>
+		<a class="btn btn-sm btn-danger" href="{% url 'delete_task' task.id %}">Delete</a>
+		{{task.date_created}}
+		
+		</div>
+				
+	
+
+	{%  endfor %}
+	
+</div>
+
+
+
+{% endblock %}
+

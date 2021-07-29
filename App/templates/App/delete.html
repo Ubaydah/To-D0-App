@@ -1,0 +1,14 @@
+ {% extends 'App/main.html'%}
+
+ {% block content %}
+ 
+ <p>Are you sure you want to delete "{{task}}"?</p>
+
+ <a class="btn btn-sm btn-warning" href="{% url 'home' %}">Cancel</a>
+ <form method="POST" action="">
+    {% csrf_token %}
+
+    <input class="btn btn-sm btn-danger" type="submit" name="Confirm">
+ </form>
+
+ {% endblock %}
